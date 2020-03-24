@@ -1,0 +1,5 @@
+Pour lancer en local,
+
+J'ai utilisé wampserver, j'ai créé un "VirutalHost" sur wamp où j'ai indiqué le chemin d'acces a mon dossier.
+Un dossier apparait sur wamp.
+Puis en cliquant simplement sur le dossier sur wamp, l'index.php se lance et va rediriger en fonction des requestes.

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+	<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<title>Page connexion</title>
+		<link rel="stylesheet" type="text/css" href="">
+
+	</head>
+
+	<body>
+		<h3>Déjà un compte ?</h3>
+		<form name="connexionForm" action="index.php?controle=utilisateur&action=connexion" onsubmit="return ValidateConnexion()" method="POST">
+
+			<input type="text" placeholder="votre email" name="login" value="">
+			
+				
+				
+			<input type="text" placeholder="votre mot de passe" name="password" value="">
+			<div id="errorLogin"></div>
+			<div id="errorPassword"></div>
+			<br>
+			<br>
+			<input type="submit" name="" value="Connexion">
+			
+		</form>
+		<br>
+		<h1>Inscription</h1>
+
+		<h3>C'est gratuit (et ca le restera toujours)</h3>
+		<br>
+		<form name="inscriptionForm" action="index.php?controle=utilisateur&action=inscription" onsubmit="return Validate()" method="POST">
+			
+				<input type="text" placeholder="Prenom" name="prenom" value="">
+				<input type="text" placeholder="Nom de famille" name="nom" value="">
+				<div id="errorPrenom"></div>
+				<div id="errorNom"></div>
+				
+			<br>
+
+				<input type="text" placeholder="Email" name="email" value="">
+				<div id="errorEmail"></div>
+			
+			<br>
+				<input type="text" placeholder="Confirmation email" name="confirmationEmail" value="">
+			<br>
+			<br>
+				<input type="password" placeholder="Mot de passe" name="nouveauMdp" value="">
+				<div id="errorMdp"></div>
+			<br>
+			<br>
+			<input class="btn" type="submit" name="" value="Inscription">
+
+			<br>
+			<br>
+			
+
+
+
+
+		</form>
+
+
+	</body>
+
+</html>
+
+<script type="text/javascript">
+
+	// creer les variables inscription
+	let prenom = document.forms["inscriptionForm"]["prenom"];
+	let nom = document.forms["inscriptionForm"]["nom"];
+	let email = document.forms["inscriptionForm"]["email"];
+	let confirmationEmail = document.forms["inscriptionForm"]["confirmationEmail"];
+	let mdp = document.forms["inscriptionForm"]["nouveauMdp"];
+
+	let errorPrenom = document.getElementById("errorPrenom");
+	let errorNom = document.getElementById("errorNom");
+	let errorEmail = document.getElementById("errorEmail");
+	let errorMdp = document.getElementById("errorMdp");
+
+
+	// creer les variables connexion
+	let login = document.forms["connexionForm"]["login"];
+	let	password = document.forms["connexionForm"]["password"];
+
+	let errorLogin = document.getElementById("errorLogin");
+	let errorPassword = document.getElementById("errorPassword");
+
+
+	// creer les events d'ecoute
+	prenom.addEventListener("blur", prenomVerifie, true);
+	nom.addEventListener("blur", nomVerifie, true);
+	email.addEventListener("blur", emailVerifie, true);
+	confirmationEmail.addEventListener("blur", confirmationEmailVerifie, true);
+	mdp.addEventListener("blur", mdpVerifie, true);
+
+	login.addEventListener("blur", loginVerifie, true);
+	password.addEventListener("blur", passwordVerifie, true);
+
+	//verifier si les champs sont bon avant d'envoyer
+	function Validate(){
+		if(prenom.value == ""){
+			prenom.style.border = "2px solid red";
+			errorPrenom.textContent = "Il faut mettre un Prenom";
+			prenom.focus();
+			return false;
+		}
+		if (nom.value == ""){
+			nom.style.border = "2px solid red";
+			errorNom.textContent = "Il faut mettre un Nom";
+			nom.focus();
+			return false;
+		}
+		if (email.value == ""){
+			email.style.border = "2px solid red";
+			errorEmail.textContent = "Il faut mettre un Email";
+			email.focus();
+			return false;
+		}
+		if(email.value != confirmationEmail.value){
+			email.style.border = "2px solid red";
+			confirmationEmail.style.border = "2px solid red";
+			errorEmail.innerHTML = "Les deux adresses mail ne correspondent pas"
+			return false;
+		}
+		if (mdp.value == ""){
+			mdp.style.border = "2px solid red";
+			errorMdp.textContent = "Il faut mettre un mot de passe";
+			mdp.focus();
+			return false;
+		}
+		
+	}
+
+	function ValidateConnexion(){
+		if(login.value == ""){
+			login.style.border = "2px solid red";
+			errorLogin.textContent = "Il faut mettre un Email";
+			login.focus();
+			return false;
+		}
+		if(password.value == ""){
+			password.style.border = "2px solid red";
+			errorPassword.textContent = "Il faut mettre un mot de passe";
+			password.focus();
+			return false;
+		}
+	}
+
+
+	// si les champs sont bon, alors c'est ok
+	function prenomVerifie(){
+		if(prenom.value != ""){
+			prenom.style.border = "1px solid #000000";
+			errorPrenom.innerHTML = "";
+			return true;
+		}
+	}
+	function nomVerifie(){
+		if(nom.value != ""){
+			nom.style.border = "1px solid #000000";
+			errorNom.innerHTML = "";
+			return true;
+		}
+	}
+	function emailVerifie(){
+		if(email.value != ""){
+			email.style.border = "1px solid #000000";
+			errorEmail.innerHTML = "";
+			return true;
+		}
+	}
+	function confirmationEmailVerifie(){
+		if(confirmationEmail.value != ""){
+			confirmationEmail.style.border = "1px solid #000000";
+			return true;
+		}
+	}
+	function mdpVerifie(){
+		if(mdp.value != ""){
+			mdp.style.border = "1px solid #000000";
+			errorMdp.innerHTML = "";
+			return true;
+		}
+	}
+
+	function loginVerifie(){
+		if(login.value != ""){
+			login.style.border = "1px solid #000000";
+			errorLogin.innerHTML = "";
+			return true;
+		}
+	}
+	function passwordVerifie(){
+		if(password.value != ""){
+			password.style.border = "1px solid #000000";
+			errorPassword.innerHTML = "";
+			return true;
+		}
+	}
+
+</script>
