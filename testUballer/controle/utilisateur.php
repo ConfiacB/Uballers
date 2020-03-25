@@ -12,11 +12,14 @@ function inscription() {
 	$mdp = $_POST['nouveauMdp'];
 
 	// Verification supplementaire
-	if(!empty($prenom) AND !empty($nom) AND !empty($email) AND !empty($mdp)){
-		inscription_BD($prenom,$nom,$email,$mdp);
+	if(!empty($prenom) AND !empty($nom) AND !empty($email) AND !empty($mdp) AND inscription_BD($prenom,$nom,$email,$mdp)){
+		
 		$_SESSION['prenom'] = $prenom;
 		$_SESSION['nom'] = $nom;
 		require ('./vue/home.html');
+	}
+	else {
+		accueil();
 	}
 	
 }
